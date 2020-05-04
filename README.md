@@ -1,6 +1,6 @@
 ## What is this?
 
-This is simple Linux Bash script that Im using sometimes to capture screenshots from osciloscope Rigol DS1054Z via network.
+This is simple Linux shell script that Im using sometimes to capture screenshots from osciloscope Rigol DS1054Z via network.
 
 ## Required hardware
 
