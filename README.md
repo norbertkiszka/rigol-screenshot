@@ -23,10 +23,10 @@ rigol.sh \
 
 ## Graphical activator in MATE (fork of Gnome 2)
 
-![Schema](https://raw.githubusercontent.com/norbertkiszka/rigol-screenshot/MATE-activator.png)
+![Mate activator settings](https://github.com/norbertkiszka/rigol-screenshot/raw/master/MATE-activator.png)
 
 ## Some screenshots made with this script
 
-![Schema](https://raw.githubusercontent.com/norbertkiszka/rigol-screenshot/examples/capture_09022020_15:57:26.bmp)
+![Example1](https://github.com/norbertkiszka/rigol-screenshot/raw/master/examples/capture_09022020_15:57:26.bmp)
 
-![Schema](https://raw.githubusercontent.com/norbertkiszka/rigol-screenshot/examples/capture_19032020_23:27:05.bmp)
+![Example2](https://github.com/norbertkiszka/rigol-screenshot/raw/master/examples/capture_19032020_23:27:05.bmp)
