@@ -2,6 +2,7 @@
 
 # Author: I dont remember. I found it many years ago without license.
 # Modified by: Norbert Kiszka.
+# Project home page: https://github.com/norbertkiszka/rigol-screenshot
 # Version: 2.0.2
 
 # Settings:
