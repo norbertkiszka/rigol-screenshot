@@ -2,7 +2,7 @@
 
 # Author: I dont remember. I found it many years ago without license.
 # Modified by: Norbert Kiszka.
-# Version: 2.0
+# Version: 2.0.1
 
 # Settings:
 
@@ -58,8 +58,11 @@ filename="$2"
 
 if [ "$filename" = "" ] ; then
 	# Generate a capture name if not supplied
-	now=`date +%d%m%Y_%X`
+	now=`date +%d.%m.%Y_%X`
 	filename="capture_${now}"
+	if [ "$1" != "" ] ; then
+		filename="${filename}_$1";
+	fi
 else
 	# Otherwise just make sure no path/suffix is given
 	filename=`basename $filename`
