@@ -2,7 +2,7 @@
 
 # Author: I dont remember. I found it many years ago without license.
 # Modified by: Norbert Kiszka.
-# Version: 2.0.1
+# Version: 2.0.2
 
 # Settings:
 
@@ -43,6 +43,7 @@ if [ "$ip" != "" ] && [ -r "$scope_ip_file" ] ; then
 fi
 
 if [ "$ip" = "" ] ; then
+	echo "Searching Rigol scope on local network..."
 	# Get the IP automatically - this probably will prompt for a password because of sudo usage.
 	ip=`sudo arp-scan -localnet | perl -ne 'print $1 if /(\S+).*Rigol/i'`
 	if [ "$ip" = "" ]; then
