@@ -8,7 +8,7 @@ Tested with Rigol DS1054Z and Rigol DHO924S. If You tried on other machines, ple
 
 1. At least one oscilloscope...
 2. Working network connection with scope.
-3. Any computer with Linux based system. Theoretically it should work with other *nix systems, because its not bash-only.
+3. Any computer with Linux/GNU based system. Theoretically it should work with other *nix systems with GNU software, because its not "bash-only".
 4. About 5-15 minutes of time.
 
 ## How to use it

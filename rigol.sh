@@ -3,14 +3,21 @@
 # Author: I dont remember. I found it many years ago without license.
 # Modified by: Norbert Kiszka.
 # Project home page: https://github.com/norbertkiszka/rigol-screenshot
-# Version: 2.0.2
+# Version: 2.1
+
+#TODO: LXI.
+#TODO; whiptail to select device.
+#TODO: User directories. Second arg - check if it exists and its a directory. If "/" is at the end and its not exists/writeable, then generate error.
+#TODO: jpg/png
+#TODO: Divide netcat and tail to capture errors (return != 0) from both of them.
+#TODO: more visible error output with caps.
 
 # Settings:
 
 # Directory with text files for ip address(es)
 scope_ip_directory="${HOME}/.config/scope_ip"
 
-# End of setting and here we go with code:
+# End of settings and here we go with the code:
 
 # Create directory if it doesn't exist.
 mkdir -p $scope_ip_directory
@@ -18,10 +25,12 @@ mkdir -p $scope_ip_directory
 if [ "$1" = "-h" ] \
 	|| [ "$2" = "-h" ] \
 	|| [ "$3" != "" ] ; then
-	echo "Give empty args (no args) to automatically find Rigol device."
+	echo "Give empty args (no args) to automatically find a Rigol device."
+	echo "If second arg is not given, then output file format will be: capture_dd.mm.yyyy_hh:mm:ss_ipOripFilename.bmp"
 	echo ""
 	echo "Usage: $0 [ip]"
 	echo "Usage: $0 [ip] [screenshot filename]"
+	echo ""
 	echo "Usage: $0 [filename which contains text with ip]"
 	echo "Usage: $0 [filename which contains text with ip] [screenshot filename]"
 	echo ""
@@ -48,43 +57,47 @@ if [ "$ip" = "" ] ; then
 	# Get the IP automatically - this probably will prompt for a password because of sudo usage.
 	ip=`sudo arp-scan -localnet | perl -ne 'print $1 if /(\S+).*Rigol/i'`
 	if [ "$ip" = "" ]; then
-		echo "Could not detect a Rigol device connected to the LAN. Aborting!"
+		echo "ERROR: Could not detect a Rigol device connected to the LAN. Aborting!"
 		exit 1
 	else
 		echo "Found a Rigol at $ip."
 	fi
 fi
 
-# The user can optionally supply a name for the capture
+# User can optionally supply a name for the capture.
 filename="$2"
 
 if [ "$filename" = "" ] ; then
-	# Generate a capture name if not supplied
+	# Generate a capture name if not supplied.
 	now=`date +%d.%m.%Y_%X`
 	filename="capture_${now}"
 	if [ "$1" != "" ] ; then
 		filename="${filename}_$1";
 	fi
 else
-	# Otherwise just make sure no path/suffix is given
+	# Otherwise just make sure no path/suffix is given.
 	filename=`basename $filename`
 	filename=`echo $filename | sed -e 's/\..*//'`
 fi
 filename="${filename}.bmp"
 
-if [ "$XDG_PICTURES_DIR" = "" ] ; then
-	XDG_PICTURES_DIR="${HOME}/Images"
+# Many distributions use home directories which are set in ~/.config/user-dirs.dirs
+output_dir=$(xdg-user-dir PICTURES)
+
+# If xdg-user-dir somehow didnt work, then do something...
+if [ "$output_dir" = "" ] ; then
+	output_dir="${HOME}/Images"
 fi
 
 # All the captures will go into this directory
-#  which is created if it doesn't exist
-output_dir="$XDG_PICTURES_DIR/scope_screens"
+#  which is created if it doesn't exist.
+output_dir="$output_dir/lab_screenshots"
 mkdir -p $output_dir
 
-# Capture
+# Capture.
 output="${output_dir}/$filename"
 if [ -e $output ]; then
-	echo "File $output already exists. Delete or move it first. Aborting!"
+	echo "ERROR: File $output already exists. Delete or move it first. Aborting!"
 	exit 1
 fi
 
@@ -99,7 +112,7 @@ fi
 
 filesize=`stat -c%s "$output"`
 if [ $filesize -eq 0 ]; then
-	echo "Saved file is empty..."
+	echo "ERROR: Saved file is empty..."
 	exit 1
 fi
 
