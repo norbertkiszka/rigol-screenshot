@@ -25,8 +25,8 @@ rigol.sh \
 sh rigol.sh
 6. All files will be saved in ${HOME}/Images/RIGOL (${HOME} means Your home directory) with date and time in filename - unless second arg with filename is provided.
 7. You can give argument(s) with other file name, ip address or file name which contains ip address. Use -h argument (./rigol.sh -h or rigol.sh -h) to know how to use it.
-8. This script is capable of reading stored ip addresses in text files. Just give a filename of this text file in first arg. Default hardcoded location is: /home/YourUserName/.config/scope_ip/nameOftextFileWithOscilloscopeIpAddress. 
-9. Also You can create some graphical activator (shortcut) if You prefer/want to click/touch instead of calling it in terminal. Example in next esudonn
+8. This script is capable of reading stored ip addresses in text files. Just give a filename of this text file in first arg. Default hardcoded location is: /home/YourUserName/.config/scope_ip/nameOfTextFileWithOscilloscopeIpAddress. 
+9. Also You can create some graphical activator (shortcut) if You prefer/want to click/touch instead of calling it in terminal. Example is in next chapter below...
 
 ## Graphical activator in MATE (fork of Gnome 2)
 
