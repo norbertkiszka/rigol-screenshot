@@ -4,6 +4,8 @@ This is a simple Linux shell script that Im using sometimes to capture screensho
 
 Tested with Rigol DS1054Z and Rigol DHO924S. If You tried on other machines, please let me know - despite of results.
 
+Most likely it should work with other Rigol equipment.
+
 ## Required hardware
 
 1. At least one oscilloscope...
